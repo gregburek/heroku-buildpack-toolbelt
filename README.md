@@ -7,7 +7,7 @@ It is meant to be used in conjunction with at least the
 [minimal ruby](https://github.com/dpiddy/heroku-buildpack-ruby-minimal) as well
 as other buildpacks as part of a
 [multi-buildpack](https://github.com/ddollar/heroku-buildpack-multi).
-
+The heroku binary is added to the dyno's $PATH.
 
 Usage
 -----
@@ -24,7 +24,7 @@ Example usage:
     $ heroku config:add HEROKU_TOOLBELT_API_PASSWORD=`heroku auth:token`
 
     $ cat .buildpacks
-    https://github.com/heroku/heroku-buildpack-toolbelt.git
+    https://github.com/gregburek/heroku-buildpack-toolbelt.git
     https://github.com/heroku/heroku-buildpack-ruby.git
 
     $ git push heroku master
@@ -42,23 +42,14 @@ Example usage:
     -----> Installing dependencies using Bundler version 1.3.2
     ...
 
-    $ heroku run 'vendor/heroku-toolbelt/bin/heroku auth:token'
-    Running `vendor/heroku-toolbelt/bin/heroku auth:token` attached to terminal... up, run.3706
+    $ heroku run 'heroku auth:token'
+    Running `heroku auth:token` attached to terminal... up, run.3706
     abcdef0123456789abcdef0123456789abcdef01
 
-    $ heroku run 'vendor/heroku-toolbelt/bin/heroku pgbackups:capture SILVER -a myapp'
-    Running `vendor/heroku-toolbelt/bin/heroku pgbackups:capture SILVER -a myapp` attached to terminal... up, run.9532
+    $ heroku run 'heroku pgbackups:capture SILVER -a myapp'
+    Running `heroku pgbackups:capture SILVER -a myapp` attached to terminal... up, run.9532
 
     HEROKU_POSTGRESQL_SILVER_URL  ----backup--->  b003
 
     Capturing... done
     Storing... done
-
-
-Notes
-------
-
-Some PATH manipulation may be needed, expecially if you are using the
-heroku-buildpack-ruby-minimal solely to provide a ruby execution environment
-for the heroku cli gem. 
-
