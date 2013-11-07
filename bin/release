@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
 # bin/release <build-dir>
+
+echo "---"
+echo "config_vars:"
+echo "  PATH: $PATH:/app/vendor/heroku-toolbelt/bin"
