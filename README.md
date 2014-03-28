@@ -19,9 +19,8 @@ Example usage:
 
     $ heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
 
-    $ heroku config:add HEROKU_TOOLBELT_API_EMAIL=my-fake-email@gmail.com
-
-    $ heroku config:add HEROKU_TOOLBELT_API_PASSWORD=`heroku auth:token`
+    $ heroku config:add HEROKU_API_KEY=`heroku auth:token`
+    $ heroku config:unset HEROKU_HOST
 
     $ cat .buildpacks
     https://github.com/heroku/heroku-buildpack-toolbelt.git
