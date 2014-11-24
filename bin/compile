@@ -24,14 +24,6 @@ function error() {
   exit 1
 }
 
-function indent() {
-  c='s/^/       /'
-  case $(uname) in
-    Darwin) sed -l "$c";;
-    *)      sed -u "$c";;
-  esac
-}
-
 function package_download() {
   engine="$1"
   version="$2"
@@ -61,9 +53,12 @@ fi
 mv heroku-client/* .
 rmdir heroku-client
 
-echo "-----> Moving the netrc generation script into app/.profile.d"
-mkdir -p $BUILD_DIR/.profile.d
-cp "$BUILDPACK_DIR/bin/gen-netrc.sh" $BUILD_DIR/.profile.d/
-chmod +x $BUILD_DIR/.profile.d/gen-netrc.sh
+# Add heroku toolbelt to the PATH
+echo "Adding heroku toolbelt to PATH"
+mkdir -p "$BUILD_DIR/.profile.d"
+cat > "$BUILD_DIR/.profile.d/path.sh" <<EOF
+export PATH=$PATH:/app/vendor/heroku-toolbelt/bin/
+EOF
+
 
 echo "-----> heroku toolbelt installation done"

@@ -22,9 +22,8 @@ Example usage:
 
     $ heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
 
-    $ heroku config:add HEROKU_TOOLBELT_API_EMAIL=my-fake-email@gmail.com
-
-    $ heroku config:add HEROKU_TOOLBELT_API_PASSWORD=`heroku auth:token`
+    $ heroku config:add HEROKU_API_KEY=`heroku auth:token`
+    $ heroku config:unset HEROKU_HOST
 
     $ cat .buildpacks
     https://github.com/gregburek/heroku-buildpack-toolbelt.git
@@ -61,7 +60,18 @@ Example usage:
 Notes
 ------
 
-Some PATH manipulation may be needed, expecially if you are using the
-heroku-buildpack-ruby-minimal solely to provide a ruby execution environment
-for the heroku cli gem. 
+WARNING: Your API token may change at any time for many reasons. If you are
+getting authentication failures, try:
 
+```
+$ heroku config:set HEROKU_API_KEY=`heroku auth:token`
+```
+
+Some PATH manipulation may be needed to successfully use the toolbelt,
+especially if you are using the heroku-buildpack-ruby-minimal solely to provide
+a ruby execution environment for the heroku cli gem, which will conflict with
+the toolbelt. Try:
+
+```
+$ heroku run 'env PATH="/app/bin" vendor/heroku-toolbelt/bin/heroku apps'
+```
