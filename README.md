@@ -1,8 +1,11 @@
-Heroku buildpack: Heroku Toolbelt
+# DEPRECATED Use https://github.com/heroku/heroku-buildpack-cli Instead.
+
+
+Heroku buildpack: Heroku Toolbelt DEPRECATED
 =========================
 
 This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) that
-allows one to run Heroku Toolbelt in a dyno alongside application code.
+allows one to run the deprecated Heroku Toolbelt in a dyno alongside application code.
 
 This is not a replacement for the [Heroku API](https://devcenter.heroku.com/articles/platform-api-reference#overview) or various clients like [v3 Ruby](https://github.com/heroku/platform-api), [v2 Ruby](https://github.com/heroku/heroku.rb), [node](https://www.npmjs.org/package/heroku-client) or [python](https://github.com/heroku/heroku.py). Some private APIs like `pgbackups` do require the buildpack, so this exists.
 
